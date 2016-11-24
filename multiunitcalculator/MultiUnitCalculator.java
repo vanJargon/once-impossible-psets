@@ -284,6 +284,7 @@ class Parser {
                     newTokensInput.add(tokensInput.get(i));
                 }
             }
+
             return rCompute(newTokensInput);
         }
     }
@@ -302,7 +303,7 @@ class Parser {
         // first token must be a number
         if (currentToken.type==Type.NUMBER){
             tempNum = Double.valueOf(currentToken.text);
-            if (tokens.size()>1){
+            if (tokensInput.size()>1){
                 nextToken = tokensInput.get(position+1);
 
                 if (nextToken.type==Type.POINT){
@@ -380,9 +381,7 @@ class Parser {
                     rightValue = rightValue.convert(leftValueType);
                 } else { //left value is a scalar
                     if (rightValue.getType()!=ValueType.SCALAR){
-//                        System.out.println("Right value type:"+rightValue.getType());
                         leftValue = leftValue.convert(rightValue.getType());
-//                        System.out.println("Left value type:"+leftValue.getType());
                         leftValueType = leftValue.getType();
 
                     }
